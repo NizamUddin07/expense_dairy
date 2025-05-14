@@ -42,7 +42,9 @@ class _NewExpenseState extends State<NewExpense> {
           Row(
             children: [
 
-              TextButton(onPressed: (){},
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+              },
                   child: Text('Cancel')),
               ElevatedButton(onPressed: (){
                 print(_titleController.text);
