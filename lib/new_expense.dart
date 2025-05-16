@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
+import 'package:expense_tracker/expense.dart';
 
 final formatter = DateFormat.yMd();
 
@@ -17,6 +19,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _amountController = TextEditingController();
   final _titleController = TextEditingController();
   DateTime ? _selectedDate;
+  Category _selectedCategory = Category.leisure;
 
   void _presentDatePicker() async{
     final now = DateTime.now();
@@ -59,7 +62,7 @@ setState(() {
              ),
            )
            ),
-           SizedBox(width: 15,),
+           
            Expanded(
                child: Row(
                  mainAxisAlignment: MainAxisAlignment.end,
@@ -77,6 +80,22 @@ setState(() {
          ),
           Row(
             children: [
+            DropdownButton(
+              value: _selectedCategory,
+                items: Category.values.map((category)=>DropdownMenuItem( value : category,
+                child: Text(category.name.toUpperCase(),
+                ),
+                ),
+
+            ).toList(),
+                onChanged: (value){
+              setState(() {
+                if (value ==null){
+                  return;
+                }
+                _selectedCategory = value;
+              });
+                }),
 
               TextButton(onPressed: (){
                 Navigator.pop(context);
