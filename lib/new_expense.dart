@@ -30,8 +30,14 @@ final pickedate = await showDatePicker(context: context, firstDate: firstDate, l
 setState(() {
   _selectedDate = pickedate;
 });
-
   }
+  void _submitExpenseData(){
+    final enteredAmount = double.tryParse(_amountController.text);
+    final amountIsInvalid = enteredAmount ==null  || enteredAmount <=0;
+    if (_titleController.text.isEmpty || amountIsInvalid || _selectedDate == null ){
+    }
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -105,9 +111,8 @@ setState(() {
                 print(_titleController.text);
               },
                   child: Text('Save Expense')),
-              ElevatedButton(onPressed: (){
-                print(_amountController.text);
-              },
+              ElevatedButton(
+                  onPressed:  _submitExpenseData,
                   child: Text('Amount')),
             ],
           )
