@@ -53,6 +53,7 @@ setState(() {
       return;
     }
     widget.onAddExpense(Expense(title: _titleController.text, amount: enteredAmount, date: _selectedDate!, category: _selectedCategory));
+    Navigator.pop(context);
   }
 
   @override
@@ -64,7 +65,7 @@ setState(() {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsets.all(16),
+    return Padding(padding: EdgeInsets.fromLTRB(16, 58, 16, 48),
       child: Column(
         children: [
           TextField(
